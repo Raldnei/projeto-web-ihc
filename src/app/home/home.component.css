@@ -1,0 +1,95 @@
+
+
+.container {
+  margin-top: 70px !important;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.349);
+  border: 1px solid rgba(0, 0, 0, 0.2); 
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 16px 64px rgb(0, 0, 0); 
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px);
+  color: white;
+  background: linear-gradient(135deg, #1c3b69, #4477c9);
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+button.btn {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradiente nos botões */
+  border: solid;
+  border-color: #ffffff;
+  color: white;
+  font-weight: bold;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+button.btn:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Gradiente invertido no hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+  
+  
+}
+
+textarea.form-control,
+input.form-range {
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordas translúcidas */
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1); /* Fundo translúcido */
+  color: white;
+  padding: 0.5rem;
+}
+
+textarea.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+}
+
+
+.color-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid #cccccc00;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  transition: border-color 0.3s ease;
+}
+
+.color-input:focus {
+  outline: none;
+  border-color: #2575fc;
+}
+
+.color-label {
+  font-size: 16px;
+  color: #ffffff;
+  margin: 0;
+}
