@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/projeto-ihc",
+            "outputPath": "dist/projeto-web-ihc",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "projeto-ihc:build:production"
+              "buildTarget": "projeto-web-ihc:build:production"
             },
             "development": {
-              "buildTarget": "projeto-ihc:build:development"
+              "buildTarget": "projeto-web-ihc:build:development"
             }
           },
           "defaultConfiguration": "development"

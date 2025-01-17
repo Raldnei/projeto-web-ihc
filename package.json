@@ -1,5 +1,5 @@
 {
-  "name": "projeto-ihc",
+  "name": "projeto-web-ihc",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:projeto-ihc": "node dist/projeto-ihc/server/server.mjs"
+    "serve:ssr:projeto-web-ihc": "node dist/projeto-web-ihc/server/server.mjs"
   },
   "private": true,
   "dependencies": {
