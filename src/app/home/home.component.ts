@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';  
 import { ColorPickerModule } from 'ngx-color-picker';
+import * as QRCode from 'qrcode';
 
 @Component({
   selector: 'app-home',
@@ -11,17 +12,41 @@ import { ColorPickerModule } from 'ngx-color-picker';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-
+  modeState: number = 0; // 0 = IA, 1 = Manual
 
   sliderValue1: number = 5;
   sliderValue2: number = 5;
   sliderValue3: number = 5;
   sliderValue4: number = 5;
 
-  showText: boolean = false;  
+  descricao: string = '';  
+  qrCodeUrl: string = '';  
+  selectedColor: string = "#000000";  
 
-  toggleText() {
-    this.showText = !this.showText;  
+  isLoading: boolean = false;  
+
+  setMode(mode: number): void {
+    this.modeState = mode;
   }
-  selectedColor: string = "#000000";
+
+  generateQRCode(): void {
+    this.isLoading = true;  
+    const qrCodeOptions = {
+      errorCorrectionLevel: 'H',
+      width: 200,
+      color: {
+        dark: this.selectedColor,  
+        light: '#FFFFFF'  
+      }
+    };
+
+    QRCode.toDataURL(this.descricao, qrCodeOptions, (err: any, url: string) => {
+      this.isLoading = false;  
+      if (err) {
+        console.error('Erro ao gerar QR Code:', err);
+      } else {
+        this.qrCodeUrl = url;  
+      }
+    });
+  }
 }

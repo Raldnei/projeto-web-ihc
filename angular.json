@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "projeto-ihc": {
+    "projeto-web-ihc": {
       "projectType": "application",
       "schematics": {},
       "root": "",

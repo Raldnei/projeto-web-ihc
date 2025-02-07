@@ -93,3 +93,18 @@ textarea.form-control::placeholder {
   color: #ffffff;
   margin: 0;
 }
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+button {
+  margin-top: 10px;
+}

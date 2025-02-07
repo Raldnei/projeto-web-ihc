@@ -2,57 +2,57 @@
   <div class="container mt-4 p-4 rounded">
     <h2 class="text-center text-white mb-4">Gerar QR-Code</h2>
     <div class="row">
-      <!-- Coluna Esquerda -->
       <div class="col-md-6 col-sm-4">
         <div class="d-flex justify-content-between mb-2">
-          <button class="btn">QR-IA</button>
-          <button class="btn">QR-Manual</button>
+          <button class="btn" [class.active]="modeState === 0" (click)="setMode(0)">QR-IA</button>
+          <button class="btn" [class.active]="modeState === 1" (click)="setMode(1)">QR-Manual</button>
+          
         </div>
 
         <div class="mb-3">
-          <label for="descricao" class="form-label">Descrição</label>
-          <textarea id="descricao" class="form-control" rows="3" placeholder="Digite a descrição"></textarea>
+          <label for="descricao" class="form-label">Conteúdo</label>
+          <textarea id="descricao" class="form-control" rows="3" placeholder="Digite a descrição" [(ngModel)]="descricao"></textarea>
         </div>
 
-        <div class="mb-3">
-          <label for="tamanho" class="form-label">Tamanho da Imagem: {{ sliderValue1 }}</label>
-          <input id="range1" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue1">
-        </div>
+        <ng-container *ngIf="modeState === 0">
+          <div class="mb-3">
+            <label for="tamanho" class="form-label">Tamanho da Imagem: {{ sliderValue1 }}</label>
+            <input id="range1" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue1">
+          </div>
 
-        <div class="mb-3">
-          <label for="criativo" class="form-label">Criativo: {{ sliderValue2 }}</label>
-          <input id="range2" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue2">
-        </div>
+          <div class="mb-3">
+            <label for="criativo" class="form-label">Criativo: {{ sliderValue2 }}</label>
+            <input id="range2" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue2">
+          </div>
 
-        <div class="mb-3">
-          <label for="bordas" class="form-label">Bordas: {{ sliderValue3 }}</label>
-          <input id="range3" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue3">
-        </div>
+          <div class="mb-3">
+            <label for="bordas" class="form-label">Bordas: {{ sliderValue3 }}</label>
+            <input id="range3" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue3">
+          </div>
 
-        <div class="mb-3">
-          <label for="intensidade" class="form-label">Intensidade: {{ sliderValue4 }}</label>
-          <input id="range4" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue4">
-        </div>
+          <div class="mb-3">
+            <label for="intensidade" class="form-label">Intensidade: {{ sliderValue4 }}</label>
+            <input id="range4" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue4">
+          </div>
 
-        <div class="color-container mb-5">
-          <label for="colorPicker" class="color-label">Escolha uma cor:</label>
-          <input type="color" id="colorPicker" [(ngModel)]="selectedColor" class="color-input" />
-        </div>
-        
+          <div class="color-container mb-5">
+            <label for="colorPicker" class="color-label">Escolha uma cor:</label>
+            <input type="color" id="colorPicker" [(ngModel)]="selectedColor" class="color-input" />
+          </div>
+        </ng-container>
 
-
-
-        <button class="btn w-100">Gerar QR-CODE</button>
+        <button class="btn w-100" (click)="generateQRCode()">Gerar QR-CODE</button>
       </div>
 
-      <!-- Coluna Direita -->
       <div class="col-md-6 text-center">
-        <div
-          class="d-flex justify-content-center align-items-center"
-          style="height: 200px; width: 200px; background-color: #fff; margin: 0 auto; border-radius: 8px;"
-        >
+        <div *ngIf="isLoading" class="d-flex justify-content-center align-items-center" style="height: 200px; width: 200px; background-color: #fff; margin: 0 auto; border-radius: 8px;">
           <img src="loading.gif" alt="Loading" style="max-height: 100%; max-width: 100%; object-fit: contain;">
         </div>
+
+        <div *ngIf="qrCodeUrl" class="d-flex justify-content-center align-items-center" style="height: 200px; width: 200px; background-color: #fff; margin: 0 auto; border-radius: 8px;">
+          <img [src]="qrCodeUrl" alt="QR Code" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+        </div>
+
         <button class="btn mt-3">Compartilhar</button>
       </div>
     </div>
