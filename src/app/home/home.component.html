@@ -15,10 +15,7 @@
         </div>
 
         <ng-container *ngIf="modeState === 0">
-          <div class="mb-3">
-            <label for="tamanho" class="form-label">Tamanho da Imagem: {{ sliderValue1 }}</label>
-            <input id="range1" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue1">
-          </div>
+          
 
           <div class="mb-3">
             <label for="criativo" class="form-label">Criativo: {{ sliderValue2 }}</label>
@@ -35,11 +32,20 @@
             <input id="range4" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue4">
           </div>
 
-          <div class="color-container mb-5">
-            <label for="colorPicker" class="color-label">Escolha uma cor:</label>
-            <input type="color" id="colorPicker" [(ngModel)]="selectedColor" class="color-input" />
-          </div>
+          
         </ng-container>
+        <div class="mb-3">
+          <label for="tamanho" class="form-label">Tamanho da Imagem: {{ sliderValue1 }}</label>
+          <input id="range1" type="range" class="form-range" min="0" max="10" [(ngModel)]="sliderValue1">
+        </div>
+        <div class="color-container mb-5">
+          <label for="colorPicker" class="color-label">Cor do QRCode:</label>
+          <input type="color" id="colorPicker" [(ngModel)]="selectedColor" class="color-input" />
+        </div>
+        <div class="color-container mb-5">
+          <label for="bgColorPicker" class="color-label">Cor do fundo:</label>
+          <input type="color" id="bgColorPicker" [(ngModel)]="selectedBgColor" class="color-input" />
+        </div>
 
         <button class="btn w-100" (click)="generateQRCode()">Gerar QR-CODE</button>
       </div>
@@ -52,7 +58,7 @@
         <div *ngIf="qrCodeUrl" class="d-flex justify-content-center align-items-center" style="height: 200px; width: 200px; background-color: #fff; margin: 0 auto; border-radius: 8px;">
           <img [src]="qrCodeUrl" alt="QR Code" style="max-height: 100%; max-width: 100%; object-fit: contain;">
         </div>
-
+        
         <button class="btn mt-3">Compartilhar</button>
       </div>
     </div>
