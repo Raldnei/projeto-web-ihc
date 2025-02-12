@@ -21,8 +21,8 @@ export class HomeComponent {
 
   descricao: string = '';  
   qrCodeUrl: string = '';  
-  selectedColor: string = "#000000"; // Cor do QR Code
-  selectedBgColor: string = "#FFFFFF"; // Cor de fundo do QR Code
+  selectedColor: string = "#000000"; 
+  selectedBgColor: string = "#FFFFFF"; 
 
   isLoading: boolean = false;  
 
@@ -38,8 +38,8 @@ export class HomeComponent {
       errorCorrectionLevel: 'H',
       width: 200,
       color: {
-        dark: this.selectedColor,  // Cor do QR Code
-        light: this.selectedBgColor  // Cor de fundo
+        dark: this.selectedColor,  
+        light: this.selectedBgColor  
       }
     };
 
