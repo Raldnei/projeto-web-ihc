@@ -20,7 +20,7 @@
       </div>
       
     </div>
-
+    <!-- Aqui é um "estado" pra o formulario ser mostrado, ou seja se o ExibirFormulario for 1 ele mostra o manual -->
     <form *ngIf="exibirFormulario === 1" (ngSubmit)="gerarQrCode()" class="p-4 rounded-3">
       <div class="row g-3">
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
@@ -91,7 +91,7 @@
       </div>
 
     </form>
-
+    <!-- Aqui é um "estado" pra o formulario ser mostrado, ou seja se o ExibirFormulario for 2 ele mostra o Random -->
     <form *ngIf="exibirFormulario === 2" (ngSubmit)="gerarQrCode()" class="p-4 rounded-3">
       <div class="row g-3 d-flex align-items-center justify-content-center">
         <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
