@@ -1,0 +1,117 @@
+
+<div class="container mt-5 w-50 ">
+    <div class="form-container text-center shadow-sm border border-white">
+      <h1 class="mb-4" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Gerar QR Code</h1>
+  
+      <div class="bloqueador d-flex align-items-center">
+        <!-- Imagem à esquerda -->
+        <div *ngIf="qrCodePath" class="mb-3 w-50 d-flex flex-column align-items-center">
+          <img [src]="'http://localhost:3000/' + qrCodePath" alt="QR Code"
+               class="img-fluid rounded border border-secondary"
+               style="max-width: 200px; max-height: 200px; object-fit: contain; background-color: white;">
+        </div>
+        
+        <!-- Se não tiver qrcode ainda, ele mostra a imagem em branco -->
+        <div *ngIf="!qrCodePath" class="mb-3 w-50 d-flex flex-column align-items-center">
+          <div style="width: 150px; height: 150px; background-color: white; border: 1px solid #6c757d;"></div>
+        </div>
+      
+        <!-- Botões ao lado da imagem -->
+        <div class="col-md-5 d-flex flex-column align-items-center justify-content-center">
+            <button class="botao1 botao-principal btn btn-primary w-100 mb-2 btn-lg">Qr-Code Manual</button>
+            <button class="botao2 botao-principal btn btn-secondary w-100 btn-lg" title="Função não implementada"disabled>Função Desabilitada</button>
+          </div>
+          
+      </div>
+      <form (ngSubmit)="gerarQrCode()" class="p-4 rounded-3 ">
+        <div class="row g-3">
+            
+              
+         
+          <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
+            <label for="conteudo" class="form-label">Conteúdo:</label>
+            <input type="text" id="conteudo" [(ngModel)]="content" name="conteudo" class="form-control" placeholder="Digite o conteúdo" required>
+          </div>
+
+
+
+          <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+            <label for="tamanho" class="form-label">Tamanho:</label>
+            <select id="tamanho" [(ngModel)]="size" name="tamanho" class="form-select" required>
+              <option *ngFor="let option of sizeOptions" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+          
+
+          <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+            <label for="borda" class="form-label">Borda:</label>
+            <select id="borda" [(ngModel)]="border" name="borda" class="form-select" required>
+              <option *ngFor="let option of borderOptions" [value]="option">{{ option }}</option>
+            </select>
+          </div>
+      
+          <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+            <label for="corPrincipal" class="form-label">Cor Principal:</label>
+            <input type="color" id="corPrincipal" [(ngModel)]="primaryColor" name="corPrincipal" class="form-control form-control-color" required>
+          </div>
+          <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+            <label for="corFundo" class="form-label">Cor Fundo:</label>
+            <input type="color" id="corFundo" [(ngModel)]="backgroundColor" name="corFundo" class="form-control form-control-color" required>
+          </div>
+          <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+            <label for="corGradiente" class="form-label">Cor Gradiente:</label>
+            <input type="color" id="corGradiente" [(ngModel)]="gradientColor" name="corGradiente" class="form-control form-control-color" required>
+          </div>
+          <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+            <label for="correcao" class="form-label">Correção:</label>
+            <select id="correcao" [(ngModel)]="correction" name="correcao" class="form-select" required>
+              <option value="pequeno">Muito Pequeno</option>
+              <option value="muito_pequeno">Pequeno</option>
+              <option value="grande">Médio</option>
+              <option value="muito_grande">Grande</option>
+            </select>
+          </div>
+  
+         
+          <div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+            <label for="moduloDesenho" class="form-label">Tipo:</label>
+            <select id="moduloDesenho" [(ngModel)]="drawingModule" name="moduloDesenho" class="form-select" required>
+              <option value="1">Quadrado</option>
+              <option value="2">Puzzle</option>
+              <option value="3">círculo</option>
+              <option value="4">Arredondado</option>
+            <!--  <option value="5">Vertical Bars</option>
+              <option value="6">Horizontal Bars</option>
+              <option value="7">Heart</option>
+              <option value="8">Triangle</option> -->
+            </select>
+          </div>
+		
+		<div class="col-md-3 d-flex flex-column justify-content-center align-items-center">
+          <label for="mascaraCor" class="form-label">Máscara:</label>
+          <select id="mascaraCor" [(ngModel)]="maskColor" name="mascaraCor" class="form-select" required>
+            <option value="1">Sólido</option>
+            <option value="2">Radial</option>
+            <!--<option value="3">Square Gradient</option>
+            <option value="4">Horizontal Gradient</option>
+            <option value="5">Vertical Gradient</option>-->
+          </select>
+        </div>
+
+          
+        </div>
+  
+        <!-- Botão -->
+        <div class="text-center mt-4">
+          <button type="submit" class="botao3 botao-principal btn btn-primary btn-lg">Gerar QR Code</button>
+        </div>
+      </form>
+  
+      <!-- Resultado 
+      <div *ngIf="qrCodePath" class="mt-4">
+        <h3 class="mb-3">QR Code Gerado:</h3>
+        <img [src]="'http://localhost:3000/' + qrCodePath" alt="QR Code" class="img-fluid rounded border border-secondary">
+      </div>
+    </div>-->
+  </div>
+  

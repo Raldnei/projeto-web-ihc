@@ -9,12 +9,16 @@ const PORT = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-app.post("/qrcode", (req, res) => {
-    const inputData = JSON.stringify(req.body);
+app.post("/gerar-qrcode", (req, res) => {
+    const inputData = req.body;  
 
-    const pythonProcess = spawn("python", ["app.py", inputData]);
+    const pythonProcess = spawn("python", ["app.py"]);
 
     let outputData = "";
+
+    // Envia os dados para o script Python
+    pythonProcess.stdin.write(JSON.stringify(inputData));
+    pythonProcess.stdin.end();
 
     pythonProcess.stdout.on("data", (data) => {
         outputData += data.toString();
@@ -27,9 +31,10 @@ app.post("/qrcode", (req, res) => {
     pythonProcess.on("close", (code) => {
         if (code === 0) {
             try {
+                // Aqui, o Python irá imprimir o nome do arquivo gerado. Vamos retornar o nome do arquivo.
                 const resultado = JSON.parse(outputData);
-                res.json({ caminho: outputData});
-                console.log(outputData)
+                res.json({ caminho: resultado.caminho }); 
+                console.log(resultado);
             } catch (error) {
                 res.status(500).json({ erro: "Erro ao processar a resposta do Python" });
             }
@@ -42,5 +47,8 @@ app.post("/qrcode", (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
+const path = require('path');
 
+// Servir a pasta 'imagens' estaticamente
+  app.use('/imagens', express.static(path.join(__dirname, 'imagens')));
 

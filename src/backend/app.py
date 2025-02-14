@@ -89,35 +89,26 @@ class QrCode:
             self.imagemQrCode.save(nome)
 
 
-# Simulando a entrada dos dados como um exemplo
-entrada = {
-    "conteudo": "inicio",
-    "tamanho": 10,
-    "borda": 4,
-    "correcao": "pequeno",
-    "corPrincipal": [0, 0, 0],
-    "corFundo": [255, 255, 255],
-    "corGradiente": [255, 0, 0],
-    "moduloDesenho": 1,
-    "mascaraCor": 2  
-}
+# Lendo os dados enviados via stdin (via Express)
+input_data = sys.stdin.read()
+dados = json.loads(input_data)
 
 # Criando o objeto QR Code e passando os parâmetros da entrada
 qr = QrCode()
 qr.QrCodeCriarDados(
-    entrada["conteudo"],
-    entrada["tamanho"],
-    entrada["borda"],
-    entrada["correcao"]
+    dados["conteudo"],
+    dados["tamanho"],
+    dados["borda"],
+    dados["correcao"]
 )
 
 # Gerando a imagem do QR Code com os parâmetros customizados
 qr.QrCodeCustomizarImagem(
-    corPrincipal=tuple(entrada['corPrincipal']),
-    corFundo=tuple(entrada['corFundo']),
-    CorGradiente=tuple(entrada['corGradiente']),
-    moduloDesenho=entrada["moduloDesenho"],
-    mascaraCor=entrada['mascaraCor']
+    corPrincipal=tuple(dados['corPrincipal']),
+    corFundo=tuple(dados['corFundo']),
+    CorGradiente=tuple(dados['corGradiente']),
+    moduloDesenho=dados["moduloDesenho"],
+    mascaraCor=dados['mascaraCor']
 )
 
 # Gerando um nome aleatório para salvar o arquivo
@@ -137,5 +128,6 @@ caminho_arquivo = os.path.join('imagens', nomeArquivo + ".PNG")
 # Salvando o arquivo gerado
 qr.salvarQrCode(caminho_arquivo)
 
-# Imprimindo o nome do arquivo gerado
-print(json.dumps(nomeArquivo))
+# Retornando o caminho do arquivo gerado
+output = {"caminho": caminho_arquivo}
+print(json.dumps(output))

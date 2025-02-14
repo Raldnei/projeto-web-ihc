@@ -1,0 +1,34 @@
+.container {
+    margin-top: 70px !important;
+    max-width: 600px;
+    background: rgba(146, 1, 115, 0.349);
+    border: 1px solid rgba(0, 0, 0, 0.2); 
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 16px 64px rgb(0, 0, 0); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    color: white;
+    background: linear-gradient(135deg, #6e0060, #570063);
+  }
+  .botao-principal {
+    background-color: rgb(212, 40, 175);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .botao-principal:hover {
+    background-color: rgb(250, 250, 250);
+    transform: scale(1.05);
+    border: 2px solid black;
+    color: black;
+  }
+  .botao2:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }

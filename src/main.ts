@@ -1,6 +1,15 @@
 import { bootstrapApplication } from '@angular/platform-browser';
-import { appConfig } from './app/app.config';
-import { AppComponent } from './app/app.component';
+import { provideRouter, withHashLocation } from '@angular/router';
+import { appRoutes } from './app/app.routes';
+import { PrincipalComponent } from './app/principal/principal.component';
+import { provideHttpClient, HttpClientModule } from '@angular/common/http';
 
-bootstrapApplication(AppComponent, appConfig)
-  .catch((err) => console.error(err));
+
+bootstrapApplication(PrincipalComponent, {
+  providers: [
+    provideRouter(appRoutes, withHashLocation()),
+    provideHttpClient(),
+    HttpClientModule, 
+ 
+  ]
+}).catch(err => console.error(err));
