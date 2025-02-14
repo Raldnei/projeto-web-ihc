@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent {
+  exibirFormulario: number = 0;
   content: string = '';
   size: number = 8;
   sizeOptions: number[] = [4, 6, 8, 10];
@@ -25,6 +26,14 @@ export class PrincipalComponent {
   maskColor: number = 1;
   qrCodePath: string = '';
 
+  randomSize = 0;
+  randomBorder = 0;
+  randomBackgroundColor = '';
+  randomGradientColor = '';
+  randomCorrection = '';
+  randomDrawingModule = '';
+  randomMaskColor = '';
+  
   constructor(private http: HttpClient) {}
 
   // Função para converter cor hexadecimal para RGB
@@ -35,7 +44,18 @@ export class PrincipalComponent {
     return [r, g, b];
   }
 
-  
+  preencherCamposRandom() {
+    
+    this.size = 8; 
+    this.border = this.borderOptions[Math.floor(Math.random() * this.borderOptions.length)];
+    this.backgroundColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    this.gradientColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    this.correction = ['pequeno', 'muito_pequeno', 'grande', 'muito_grande'][Math.floor(Math.random() * 4)];
+    this.drawingModule = Math.floor(Math.random() * 4) + 1; 
+    this.maskColor = Math.floor(Math.random() * 2) + 1;
+    this.gerarQrCode();
+
+  }
 
   gerarQrCode() {
     const requestBody = {
@@ -59,5 +79,7 @@ export class PrincipalComponent {
         console.error('Erro ao gerar QR Code:', error);
       });
   }
+  alternarFormulario(tipo: number): void {
+    this.exibirFormulario = tipo;
+  }
 }
-
