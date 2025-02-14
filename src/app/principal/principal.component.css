@@ -28,7 +28,4 @@
     border: 2px solid black;
     color: black;
   }
-  .botao2:hover::after {
-    opacity: 1;
-    visibility: visible;
-  }
+
